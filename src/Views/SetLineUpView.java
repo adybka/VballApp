@@ -82,6 +82,7 @@ public class SetLineUpView extends JFrame {
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(handler);
 		cancelButton.setEnabled(false);
+		cancelButton.setPreferredSize(new Dimension(80, 60));
 		playerPane.add(cancelButton);
 		
 		//Setup Lineup stuff
@@ -150,6 +151,17 @@ public class SetLineUpView extends JFrame {
 		}
 		
 		private void cancelButtonPress() {
+			for(JButton b : lineUpButtons) {
+				b.setEnabled(true);
+				b.setBackground(null);
+			}
+			
+			for(JButton b : playerButtons) {
+				b.setEnabled(false);
+				b.setBackground(Color.LIGHT_GRAY);
+			}
+			
+			cancelButton.setEnabled(false);
 		
 		}
 		
@@ -168,6 +180,8 @@ public class SetLineUpView extends JFrame {
 					b.setBackground(null);
 				}
 			}
+			
+			cancelButton.setEnabled(true);
 		}
 		
 		private void playerButtonPress(String buttonText) {
@@ -186,10 +200,12 @@ public class SetLineUpView extends JFrame {
 			}
 			if(!currentLineUp.contains(-1))
 				confirmButton.setEnabled(true);
+			cancelButton.setEnabled(false);
 		}
 		
 		private void confirmLineUp() {
-			//dostuff
+			controller.addLineUp(currentLineUp);
+			setVisible(false);
 		}
 		
 	}//end of handler class

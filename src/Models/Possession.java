@@ -3,21 +3,21 @@ package Models;
 
 
 public class Possession {
-	private int setterPosition;
-	private char receiveType; //1=S	2=F	3=O	4=L	5=M	6=R	7=A	8=P	9=D 10=C
-	private double blockingNUm;
-	private int receivingPlayer;
-	private int passQuality;
-	private int attacker;
-	private char attackResult; //1=K 2=D 3=E 4=B 5=BC=C 6=BE=E
-	private char killType; //1=S	2=R	3=T
-	private int killX;
-	private int killy;
-	private int killTeam;
-	private int hitFix;
-	private char blockResult; //1=K 2=D 3=T	4=E
-	private int blockingPlayer;
-	private int blockingAssist;
+	private int setterPosition; 
+	private char receiveType; //1    1=S 2=F	3=O	4=L	5=M	6=R	7=A	8=P	9=D 10=C
+	private double blockingNUm; //2
+	private int receivingPlayer; //3
+	private int passQuality; //4
+	private int attacker; //5
+	private char attackResult; //6   //1=K 2=D 3=E 4=B 5=BC=C 6=BE=E
+	private char killType; //7       //1=S	2=R	3=T
+	private int killX; //8
+	private int killy; //9
+	private int killTeam; //10
+	private int hitFix; //11
+	private char blockResult; //12  //1=K 2=D 3=T	4=E
+	private int blockingPlayer; //13
+	private int blockingAssist; //14
 	
 	
 	public Possession() {}
