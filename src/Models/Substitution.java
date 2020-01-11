@@ -5,9 +5,11 @@ public class Substitution {
 	
 	private int playerOff;
 	private int playerOn;
-	private String score;
 	
-	public Substitution() { };
+	public Substitution(int pOff, int pOn) { 
+		this.setPlayerOff(pOff);
+		this.setPlayerOn(pOn);
+	}
 	
 	public int getPlayerOff() {
 		return playerOff;
@@ -20,12 +22,6 @@ public class Substitution {
 	}
 	public void setPlayerOn(int playerOn) {
 		this.playerOn = playerOn;
-	}
-	public String getScore() {
-		return score;
-	}
-	public void setScore(String score) {
-		this.score = score;
 	}
 	
 

@@ -2,6 +2,7 @@ package Views;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class SetLineUpView extends JFrame {
 	
 	private static final int[] players = { 1, 4, 8, 9, 11, 13, 15, 16, 18, 19, 21};
-	private static final String[] positions = { "P1", "P2", "P3", "P4", "P5", "P6" };
+	private static final String[] positions = { "1", "2", "3", "4", "5", "6" };
 	
 	private ArrayList<Integer> currentLineUp;
 	
@@ -37,6 +38,7 @@ public class SetLineUpView extends JFrame {
 	private JButton cancelButton;
 	private JComboBox setterPosDropDown;
 	private BaseController controller;
+	private JTextField nameField;
 	
 	private Handler handler;
 	
@@ -107,7 +109,6 @@ public class SetLineUpView extends JFrame {
 			b.addActionListener(null);
 		}
 		
-		
 		//Misc stuff in confirmPane
 		confirmPane.add(new JLabel("Setter Starting Position:"));
 		
@@ -116,12 +117,20 @@ public class SetLineUpView extends JFrame {
 		setterPosDropDown.setPreferredSize(new Dimension(125, 60));
 		setterPosDropDown.setFont(new Font("Arial", Font.PLAIN, 40));
 		
+		
+		
 		confirmButton = new JButton("confirm");
 		confirmPane.add(confirmButton);
 		confirmButton.setEnabled(false);
 		confirmButton.addActionListener(handler);
 		confirmButton.setFont(new Font("Areial", Font.PLAIN, 25));
 		confirmButton.setPreferredSize(new Dimension(125, 60));
+		
+		//nameField stuff
+		nameField = new JTextField();
+		nameField.setPreferredSize(new Dimension(300, 50));
+		nameField.setFont(new Font("Arial", Font.PLAIN, 30));
+		playerPane.add(nameField);
 		
 		
 	}
@@ -198,13 +207,13 @@ public class SetLineUpView extends JFrame {
 				b.setEnabled(false);
 				b.setBackground(Color.LIGHT_GRAY);
 			}
-			if(!currentLineUp.contains(-1))
+			if(!currentLineUp.contains(-1) && !nameField.getText().equals(""))
 				confirmButton.setEnabled(true);
 			cancelButton.setEnabled(false);
 		}
 		
 		private void confirmLineUp() {
-			controller.addLineUp(currentLineUp);
+			controller.addLineUp(currentLineUp, Integer.parseInt((String) setterPosDropDown.getSelectedItem()), nameField.getText());
 			setVisible(false);
 		}
 		

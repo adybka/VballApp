@@ -19,16 +19,29 @@ public class MainView extends JFrame{
 	private BaseController baseController;
 	
 	private Handler handler;
+	private MenuHandler menuHandler;
 	
 	private JScrollPane historyPanel;
 	private JPanel menuPanel;
 	private JPanel inputPanel;
 	
-	private ArrayList<JButton> inputButtons;
+	public HistoryView history;
 	
-	public MainView(BaseController base) {
-		super("Stat Track");
+	private JLabel stepLabel;
+	private JLabel setterPosLabel;
+	private JLabel menuLabel;
+	
+	private JButton rotateButton;
+	private JButton saveButton;
+	private ArrayList<JButton> inputButtons;
+	private JButton  nextPosButton;
+	private JButton substitutionButton;
+	private JButton fullSaveButton;
+	
+	public MainView(BaseController base, String title) {
+		super(title);
 		handler = new Handler();
+		menuHandler = new MenuHandler();
 		this.baseController = base;
 		setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
 		setPreferredSize(new Dimension(1400,950));
@@ -36,6 +49,7 @@ public class MainView extends JFrame{
 		setUpFrame();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
+		//input Buttons
 		setUpButtons();
 		ReceiveTypeButtons();
 		setVisible(true);
@@ -50,13 +64,15 @@ public class MainView extends JFrame{
 
 	
 	private void setUpFrame() {
-		historyPanel = new JScrollPane();
+		//Setup Panels
+		
+		historyPanel = new JScrollPane(history = new HistoryView(this.baseController));
 		menuPanel = new JPanel(new FlowLayout());
 		inputPanel = new JPanel(new FlowLayout());
 		
-		historyPanel.setPreferredSize(new Dimension(1210, 500));
-		menuPanel.setPreferredSize(new Dimension(230, 490));
-		inputPanel.setPreferredSize(new Dimension(980, 490));	
+		historyPanel.setPreferredSize(new Dimension(1360, 490));
+		menuPanel.setPreferredSize(new Dimension(270, 490));
+		inputPanel.setPreferredSize(new Dimension(1000, 490));	
 		
 		historyPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		menuPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -64,12 +80,49 @@ public class MainView extends JFrame{
 		
 		historyPanel.setBackground(Color.white);	
 		menuPanel.setBackground(Color.white);	
-		inputPanel.setBackground(Color.white);			
+		inputPanel.setBackground(Color.white);	
 		
-		historyPanel.add(new JLabel("HISTORY PANEL"));
-		menuPanel.add(new JLabel("Menu Panel"));
+		menuPanel.add(new JLabel("Menu"));
+		
+		//Menu Set up
+		rotateButton=new JButton("Rotate");
+		rotateButton.setPreferredSize(new Dimension(200, 50));
+		rotateButton.addActionListener(menuHandler);
+		menuPanel.add(rotateButton);
+		rotateButton.setVisible(true);
+		
+		saveButton = new JButton("Save");
+		saveButton.setPreferredSize(new Dimension(200, 50));
+		saveButton.addActionListener(menuHandler);
+		menuPanel.add(saveButton);
+		
+		substitutionButton = new JButton("Substitution");
+		substitutionButton.setPreferredSize(new Dimension(200, 50));
+		substitutionButton.addActionListener(menuHandler);
+		menuPanel.add(substitutionButton);
+		
+		fullSaveButton = new JButton("FULL SAVE");
+		fullSaveButton.setPreferredSize(new Dimension(200, 50));
+		fullSaveButton.addActionListener(menuHandler);
+		menuPanel.add(fullSaveButton);
+				
 		
 		
+		
+		//Input Panel Stuff
+		setterPosLabel = new JLabel("Setter in: "+baseController.getCurrSetterPos(), (int) JLabel.CENTER_ALIGNMENT);
+		setterPosLabel.setPreferredSize(new Dimension(100, 75));
+		inputPanel.add(setterPosLabel);
+		
+		stepLabel = new JLabel("Recieve Type", (int) JLabel.LEFT_ALIGNMENT);
+		stepLabel.setPreferredSize(new Dimension(650, 75));
+		inputPanel.add(stepLabel);
+		
+		nextPosButton = new JButton("NEXT");
+		nextPosButton.setPreferredSize(new Dimension(150, 60));
+		nextPosButton.addActionListener(menuHandler);
+		inputPanel.add(nextPosButton);
+			
 		this.add(historyPanel);
 		this.add(menuPanel);
 		this.add(inputPanel);
@@ -105,20 +158,65 @@ public class MainView extends JFrame{
 	
 	public void nextStep(int step) {
 		
+		//step 2 = BlockingNum
+		if(step==1) {
+			System.out.println("NEW");
+			stepLabel.setText("Receive Type");
+			inputButtons.get(0).setText("S");
+			inputButtons.get(1).setText("F");
+			inputButtons.get(2).setText("O");
+			inputButtons.get(3).setText("L");
+			inputButtons.get(4).setText("M");
+			inputButtons.get(5).setText("R");
+			inputButtons.get(6).setText("D");
+			inputButtons.get(7).setText("A");
+			inputButtons.get(8).setText("P");
+			inputButtons.get(9).setText("C");
+			for(int i=0; i<10; i++)
+				inputButtons.get(i).setVisible(true);
+		}
+		else if(step==2) {
+			stepLabel.setText("Blocking Number");
+			inputButtons.get(0).setText("0");
+			inputButtons.get(1).setText("1");
+			inputButtons.get(2).setText("1.5");
+			inputButtons.get(3).setText("2");
+			inputButtons.get(4).setText("2.5");
+			inputButtons.get(5).setText("3");
+			for(int i=0; i<inputButtons.size(); i++) {
+				if(i<6)
+					inputButtons.get(i).setVisible(true);
+				else
+					inputButtons.get(i).setVisible(false);
+			}
+			
+		}
 		//Step 3 = Receiving Player
-		if(step==3) {
+		else if(step==3) {
+			stepLabel.setText("Receiving Player");
 			int index=0;
 			for(int i : baseController.getLineUp()) {
 				inputButtons.get(index).setText(i+"");
+				inputButtons.get(index).setVisible(true);
 				index++;
 			}
 			inputButtons.get(7).setText("-1");
-			for(int i=8; i<inputButtons.size(); i++) {
+			inputButtons.get(7).setVisible(true);
+			if(baseController.getCurrPos().getReceiveType()!='S') {
+				inputButtons.get(8).setText("BR");
+				inputButtons.get(8).setVisible(true);
+			}
+			else {
+				inputButtons.get(8).setVisible(false);
+			}
+			for(int i=9; i<inputButtons.size(); i++) {
 				inputButtons.get(i).setVisible(false);
 			}
+			
 		}
 		//Step 4 = pass quality
 		else if(step==4) {
+			stepLabel.setText("PassQuality");
 			for(int i = 0; i<4; i++) {
 				inputButtons.get(i).setText(""+(i));
 				inputButtons.get(i).setVisible(true);
@@ -129,6 +227,7 @@ public class MainView extends JFrame{
 		}
 		//Step 5 = attacker
 		else if(step==5) {
+			stepLabel.setText("Attacking Player");
 			int index=0;
 			for(int i : baseController.getLineUp()) {
 				inputButtons.get(index).setText(i+"");
@@ -143,6 +242,7 @@ public class MainView extends JFrame{
 		}
 		//Step 6 = Attack Result
 		else if(step==6) {
+			stepLabel.setText("Attack Result");
 			inputButtons.get(0).setText("K");
 			inputButtons.get(1).setText("D");
 			inputButtons.get(2).setText("E");
@@ -155,6 +255,7 @@ public class MainView extends JFrame{
 		}
 		//step 7 = Kill Type
 		else if (step==7) {
+			stepLabel.setText("Kill Type");
 			inputButtons.get(0).setText("S");
 			inputButtons.get(1).setText("T");
 			inputButtons.get(2).setText("R");
@@ -164,8 +265,10 @@ public class MainView extends JFrame{
 				inputButtons.get(i).setVisible(false);		
 			}
 		}
-		//step 8 = killX/KillY
+		//step 8/9 = killX/KillY
 		else if(step==8 || step==9) {
+			if(step==8) stepLabel.setText("KillX");
+			else stepLabel.setText("KillY");
 			for(int i=0; i< inputButtons.size(); i++ ) {
 				if(i<3) 
 					inputButtons.get(i).setText(""+(i+1));
@@ -173,6 +276,49 @@ public class MainView extends JFrame{
 					inputButtons.get(i).setVisible(false);
 			}
 		}
+		//step 12 = block result
+		else if(step==12) {
+			stepLabel.setText("Block Result");
+			inputButtons.get(0).setText("K");
+			inputButtons.get(1).setText("D");
+			inputButtons.get(2).setText("T");
+			inputButtons.get(3).setText("E");
+			for(int i =0; i<inputButtons.size(); i++) {
+				if(i<4)
+					inputButtons.get(i).setVisible(true);
+				else
+					inputButtons.get(i).setVisible(false);
+			}
+		}
+		//step 13 == blocking player
+		else if(step==13) {
+			stepLabel.setText("Blocking Player");
+			int index=0;
+			for(int i : baseController.getLineUp()) {
+				inputButtons.get(index).setText(i+"");
+				inputButtons.get(index).setVisible(true);
+				index++;
+			}
+			for(int i=7; i<inputButtons.size(); i++) {
+				inputButtons.get(i).setVisible(false);
+			}
+		}
+		else if(step==14) {
+			stepLabel.setText("Blocking Assist");
+			int index=0;
+			for(int i : baseController.getLineUp()) {
+				inputButtons.get(index).setText(i+"");
+				inputButtons.get(index).setVisible(true);
+				index++;
+			}
+			for(int i=7; i<inputButtons.size(); i++) {
+				inputButtons.get(i).setVisible(false);
+			}
+		}
+		else if(step==-1) {
+			baseController.addPos();
+		}
+		
 		
 		
 	}
@@ -180,9 +326,21 @@ public class MainView extends JFrame{
 	class Handler implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			System.out.print("BUtton PRess");
+			System.out.print(baseController.getStep()+" Button PRess");
 			if(baseController.getStep()==1 || baseController.getStep()==6 || baseController.getStep()==7 || baseController.getStep()==12) {
 				baseController.addToPossessionChar(((AbstractButton) e.getSource()).getText().charAt(0)); 
+				nextStep(baseController.getStep());
+			}
+			else if(baseController.getStep()==3) {
+				if(((AbstractButton) e.getSource()).getText().equals("BR")) 
+					baseController.addToPossessionInt(-2);
+				else
+					baseController.addToPossessionInt(Integer.parseInt(((AbstractButton) e.getSource()).getText()));
+				
+				nextStep(baseController.getStep());
+			}
+			else if(baseController.getStep()==2) {
+				baseController.addToPossessionBlockNum(Double.parseDouble(((AbstractButton) e.getSource()).getText())); 
 				nextStep(baseController.getStep());
 			}
 			else {
@@ -192,6 +350,30 @@ public class MainView extends JFrame{
 		}
 		
 	}
-	
+
+	class MenuHandler implements ActionListener{
+
+		
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==rotateButton) {
+				baseController.rotate();
+				setterPosLabel.setText("Setter in: "+baseController.getCurrSetterPos());
+			}
+			else if(e.getSource()==nextPosButton){
+				baseController.addPos();
+			}
+			else if(e.getSource()==saveButton) {
+				baseController.saveCurrentSet();
+			}
+			else if(e.getSource()==substitutionButton) {
+				baseController.startSub();
+			}
+			else if(e.getSource()==fullSaveButton) {
+				baseController.fullSave();
+			}
+			
+		}
+		
+	}
 	
 }

@@ -1,6 +1,7 @@
  
 package Models;
 
+import java.util.ArrayList;
 
 public class LineUp {
 
@@ -14,7 +15,16 @@ public class LineUp {
 	private int SetterStartingPosition;
 	
 	
-	public LineUp() { } 
+	public LineUp(ArrayList<Integer> list, int setterPos) { 
+		P1=list.get(0);
+		P2=list.get(1);
+		P3=list.get(2);
+		P4=list.get(3);
+		P5=list.get(4);
+		P6=list.get(5);
+		Lib=list.get(6);
+		SetterStartingPosition=setterPos;
+	} 
 	
 	
 	public int getP1() {
