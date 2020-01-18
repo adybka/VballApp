@@ -37,6 +37,7 @@ public class MainView extends JFrame{
 	private JButton  nextPosButton;
 	private JButton substitutionButton;
 	private JButton fullSaveButton;
+	private JButton undoButton;
 	
 	public MainView(BaseController base, String title) {
 		super(title);
@@ -90,6 +91,11 @@ public class MainView extends JFrame{
 		rotateButton.addActionListener(menuHandler);
 		menuPanel.add(rotateButton);
 		rotateButton.setVisible(true);
+		
+		undoButton = new JButton("Undo");
+		undoButton.setPreferredSize(new Dimension(200, 50));
+		undoButton.addActionListener(menuHandler);
+		menuPanel.add(undoButton);
 		
 		saveButton = new JButton("Save");
 		saveButton.setPreferredSize(new Dimension(200, 50));
@@ -370,6 +376,9 @@ public class MainView extends JFrame{
 			}
 			else if(e.getSource()==fullSaveButton) {
 				baseController.fullSave();
+			}
+			else if(e.getSource()==undoButton) {
+				baseController.undo();
 			}
 			
 		}

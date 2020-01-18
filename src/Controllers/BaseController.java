@@ -8,6 +8,7 @@ import Models.Set;
 import Models.Substitution;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import Models.LineUp;
 
@@ -22,10 +23,12 @@ public class BaseController {
 	private int currSetterPos;
 	private Set currSet;
 	private CsvSaver csvSaver;
+	private Stack<Integer> undoStack;
 	
 	public BaseController() {
 		step = 1;
 		csvSaver = new CsvSaver();
+		undoStack = new Stack<Integer>();
 		/*for TESTING
 		currLineUp = new ArrayList<Integer>();
 		currLineUp.add(4);
@@ -65,6 +68,7 @@ public class BaseController {
 	
 	public void addToPossessionInt(int value) {
 		System.out.println("add int: " + value);
+		undoStack.push(step);
 		switch(step) {
 		case 3:
 			if(value==-2) {
@@ -122,12 +126,14 @@ public class BaseController {
 	
 	public void addToPossessionBlockNum(double value) {
 		System.out.println("Add double: " + value);
+		undoStack.push(step);
 		currPos.setBlockingNUm(value);
 		step++;
 	}
 	
 	public void addToPossessionChar(char value) {
 		System.out.println("Add Char: " + value);
+		undoStack.push(step);
 		switch(step) {
 		case 1:
 			currPos.setReceiveType(value);
@@ -168,6 +174,7 @@ public class BaseController {
 	}
 	
 	public void addPos() {
+		undoStack.clear();
 		currSet.addPossession(currPos);
 		mView.history.model.insertRow(0, currPos.getAllThings().toArray());
 		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
@@ -183,7 +190,20 @@ public class BaseController {
 		currSet.setLineUp(new LineUp(list, setterPos));
 		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
 		this.mView = new MainView(this, setName);
-
+	}
+	
+	public void undo() {
+		step=undoStack.pop();
+		if(step==1 || step==6 || step==7 || step==12) {
+			addToPossessionChar(("").charAt(0));
+		}
+		else if(step==2) {
+			addToPossessionBlockNum((Double) null);
+		}
+		else {
+			addToPossessionInt((Integer) null);
+		}
+		
 	}
 	
 	public int getStep() {
