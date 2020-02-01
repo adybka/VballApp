@@ -255,8 +255,11 @@ public class MainView extends JFrame{
 			inputButtons.get(3).setText("B");
 			inputButtons.get(4).setText("CB");
 			inputButtons.get(5).setText("OBE");
-			for(int i=6; i<inputButtons.size(); i++) {
-				inputButtons.get(i).setVisible(false);
+			for(int i=0; i<inputButtons.size(); i++) {
+				if(i>=6)
+					inputButtons.get(i).setVisible(false);
+				else 
+					inputButtons.get(i).setVisible(true);
 			}
 		}
 		//step 7 = Kill Type
@@ -267,6 +270,9 @@ public class MainView extends JFrame{
 			inputButtons.get(2).setText("R");
 			inputButtons.get(3).setText("E");
 			inputButtons.get(4).setText("BT");
+			for(int i=0; i<5; i++) {
+				inputButtons.get(i).setVisible(true);
+			}
 			for(int i = 5; i<inputButtons.size(); i++) {
 				inputButtons.get(i).setVisible(false);		
 			}

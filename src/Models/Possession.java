@@ -141,4 +141,70 @@ public class Possession {
 		return allThings;
 	}
 	
+	public void setIntStep(int step, Integer value) {
+		switch(step){
+		case 3:
+			setReceivingPlayer(value);
+			break;
+		case 4:
+			setPassQuality(value);
+			break;
+		case 5:
+			setAttacker(value);
+			break;
+		case 8:
+			setKillX(value);
+			break;
+		case 9:
+			setKilly(value);
+			break;
+		case 10:
+			setKillTeam(value);
+			break;
+		}
+	}
+	
+	public void setCharStep(int step, char value) {
+		switch(step) {
+		case 1:
+			setReceiveType(value);
+			break;
+		case 6: 
+			setAttackResult(value);
+			break;
+		case 7:
+			setKillType(value);
+			break;
+		case 12:
+			setBlockResult(value);
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

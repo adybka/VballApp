@@ -29,7 +29,8 @@ public class BaseController {
 		step = 1;
 		csvSaver = new CsvSaver();
 		undoStack = new Stack<Integer>();
-		/*for TESTING
+		currSet = new Set("TEST");
+		//for TESTING
 		currLineUp = new ArrayList<Integer>();
 		currLineUp.add(4);
 		currLineUp.add(16);
@@ -38,7 +39,7 @@ public class BaseController {
 		currLineUp.add(21);
 		currLineUp.add(13);
 		currLineUp.add(11);
-		currSet.setLineUp(new LineUp());
+		currSet.setLineUp(new LineUp(currLineUp, 1));
 		currSet.getLineUp().setLib(11);
 		currSet.getLineUp().setP1(4);
 		currSet.getLineUp().setP2(16);
@@ -50,7 +51,7 @@ public class BaseController {
 		
 		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
 		currSetterPos=currSet.getLineUp().getSetterStartingPosition();
-		*/
+		
 		
 		go();
 	}
@@ -195,13 +196,16 @@ public class BaseController {
 	public void undo() {
 		step=undoStack.pop();
 		if(step==1 || step==6 || step==7 || step==12) {
-			addToPossessionChar(("").charAt(0));
+			currPos.setCharStep(step, ' ');
+			mView.nextStep(step);
 		}
 		else if(step==2) {
-			addToPossessionBlockNum((Double) null);
+			currPos.setBlockingNUm(-10);
+			mView.nextStep(step);
 		}
 		else {
-			addToPossessionInt((Integer) null);
+			currPos.setIntStep(step, -10);
+			mView.nextStep(step);
 		}
 		
 	}
@@ -241,9 +245,10 @@ public class BaseController {
 		csvSaver.saveSetInformation(currSet);
 	}
 	
+
 	private void go() {
-		//this.mView = new MainView(this, this.currSet.name);
-		this.sView = new SetLineUpView(this);
+		this.mView = new MainView(this, this.currSet.name);
+		//this.sView = new SetLineUpView(this);
 		//this.subView = new SubView(this);
 	}
 	
