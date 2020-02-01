@@ -83,9 +83,13 @@ public class MainView extends JFrame{
 		menuPanel.setBackground(Color.white);	
 		inputPanel.setBackground(Color.white);	
 		
-		menuPanel.add(new JLabel("Menu"));
+		
 		
 		//Menu Set up
+		menuLabel = new JLabel("MENU", SwingConstants.CENTER);
+		menuLabel.setPreferredSize(new Dimension(200, 25));
+		menuPanel.add(menuLabel);
+		
 		rotateButton=new JButton("Rotate");
 		rotateButton.setPreferredSize(new Dimension(200, 50));
 		rotateButton.addActionListener(menuHandler);
@@ -96,16 +100,16 @@ public class MainView extends JFrame{
 		undoButton.setPreferredSize(new Dimension(200, 50));
 		undoButton.addActionListener(menuHandler);
 		menuPanel.add(undoButton);
+				
+		substitutionButton = new JButton("Substitution");
+		substitutionButton.setPreferredSize(new Dimension(200, 50));
+		substitutionButton.addActionListener(menuHandler);
+		menuPanel.add(substitutionButton);
 		
 		saveButton = new JButton("Save");
 		saveButton.setPreferredSize(new Dimension(200, 50));
 		saveButton.addActionListener(menuHandler);
 		menuPanel.add(saveButton);
-		
-		substitutionButton = new JButton("Substitution");
-		substitutionButton.setPreferredSize(new Dimension(200, 50));
-		substitutionButton.addActionListener(menuHandler);
-		menuPanel.add(substitutionButton);
 		
 		fullSaveButton = new JButton("FULL SAVE");
 		fullSaveButton.setPreferredSize(new Dimension(200, 50));
