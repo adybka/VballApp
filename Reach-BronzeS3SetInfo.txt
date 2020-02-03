@@ -1,0 +1,5 @@
+Set Name: Reach-BronzeS3
+Staring Line Up (1-6, lib): 4, 21, 1, 9, 19, 13, 11
+
+Subs (off, On): 
+19, 15

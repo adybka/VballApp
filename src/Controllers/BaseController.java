@@ -29,8 +29,8 @@ public class BaseController {
 		step = 1;
 		csvSaver = new CsvSaver();
 		undoStack = new Stack<Integer>();
-		currSet = new Set("TEST");
-		//for TESTING
+		/*currSet = new Set("TEST");
+		/*for TESTING
 		currLineUp = new ArrayList<Integer>();
 		currLineUp.add(4);
 		currLineUp.add(16);
@@ -51,18 +51,18 @@ public class BaseController {
 		
 		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
 		currSetterPos=currSet.getLineUp().getSetterStartingPosition();
-		
+		*/
 		
 		go();
 	}
 	
 	public void rotate() {
-		if(currSetterPos!=6) {
-			currSetterPos++;
+		if(currSetterPos!=1) {
+			currSetterPos--;
 			currPos.setSetterPosition(currSetterPos);
 		}
 		else {
-			currSetterPos=1;
+			currSetterPos=6;
 			currPos.setSetterPosition(currSetterPos);
 		}
 	}
@@ -178,7 +178,7 @@ public class BaseController {
 		undoStack.clear();
 		currSet.addPossession(currPos);
 		mView.history.model.insertRow(0, currPos.getAllThings().toArray());
-		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
+		currPos = new Possession(currSetterPos);
 		step=1;
 		mView.nextStep(step);
 	}
@@ -247,8 +247,8 @@ public class BaseController {
 	
 
 	private void go() {
-		this.mView = new MainView(this, this.currSet.name);
-		//this.sView = new SetLineUpView(this);
+		//this.mView = new MainView(this, this.currSet.name);
+		this.sView = new SetLineUpView(this);
 		//this.subView = new SubView(this);
 	}
 	

@@ -1,16 +1,24 @@
-use Volleyball1
 
-Select count(case when PlayerReceiving!=-1 and PassQuality!='0' then 1 end) as DIGS,
-	   count(case when PlayerReceiving != -1 and PassQuality='0' then 1 end) as Shanks,
-	   count(case when PlayerReceiving = -1 then 1 end) as NoTouchKills
-	from DEC14UPLOAD where ReceiveType!='S' and ReceiveType!='F' and PlayerReceiving!='' and ReceiveType!='BC'
+Select count(case when ReceivingPlayer!=-1 and PassQuality!='0' then 1 end) as DIGS,
+	   count(case when ReceivingPlayer != -1 and PassQuality='0' then 1 end) as Shanks,
+	   count(case when ReceivingPlayer = -1 then 1 end) as NoTouchKills
+	from [DurhamAttack-Semis(02-01-20)UPLOAD] where ReceiveType!='S' and ReceiveType!='F' and ReceivingPlayer!='' and ReceiveType!='BC' 
+	and ReceivingPlayer=11
 
-	Select count(*) from DEC14UPLOAD where ReceiveType!='S' and ReceiveType!='F' and PlayerReceiving!='' and ReceiveType!='BC'
+	select count(*) from [DurhamAttack-Semis(02-01-20)UPLOAD] where KillX=3 and ReceivingPlayer=-1
 
+	Select count(*) from [Evolution-P2(02-01-20)] where 
+	ReceiveType!='S' 
+	and ReceiveType!='F' 
+	and ReceivingPlayer!='' 
+	and ReceiveType!='C' 
+	and ReceiveType!='O'
 
-Select count(case when PlayerReceiving!=-1 and PassQuality!='0' then 1 end) as DIGS,
-	   count(case when PlayerReceiving != -1 and PassQuality='0' then 1 end) as Shanks,
-	   count(case when PlayerReceiving = -1 then 1 end) as NoTouchKills
-		from DEC14UPLOAD where ReceiveType='BC'
+/*
+Select count(case when ReceivingPlayer!=-1 and PassQuality!='0' then 1 end) as DIGS,
+	   count(case when ReceivingPlayer != -1 and PassQuality='0' then 1 end) as Shanks,
+	   count(case when ReceivingPlayer = -1 then 1 end) as NoTouchKills
+		from [DurhamAttack-Semis(02-01-20)UPLOAD] where ReceiveType='BC'
 
-		select count(*) from DEC14UPLOAD where AttackResult='B' or AttackResult='BC'
+		select count(*) from [DurhamAttack-Semis(02-01-20)UPLOAD] where AttackResult='B' or AttackResult='BC'
+		*/

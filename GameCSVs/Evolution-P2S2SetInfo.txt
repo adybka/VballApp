@@ -1,0 +1,6 @@
+Set Name: Evolution-P2S2
+Staring Line Up (1-6, lib): 4, 21, 1, 9, 15, 13, 11
+
+Subs (off, On): 
+4, 8
+15, 19
