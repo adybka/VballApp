@@ -1,5 +1,0 @@
-Set Name: Reach-BronzeS2
-Staring Line Up (1-6, lib): 21, 18, 9, 19, 13, 4, 11
-
-Subs (off, On): 
-18, 1

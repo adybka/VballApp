@@ -1,6 +1,0 @@
-Set Name: Pakmen-P1S1
-Staring Line Up (1-6, lib): 4, 21, 18, 9, 15, 13, 11
-
-Subs (off, On): 
-9, 8
-4, 19
