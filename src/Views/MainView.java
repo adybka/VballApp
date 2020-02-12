@@ -30,6 +30,7 @@ public class MainView extends JFrame{
 	private JLabel stepLabel;
 	private JLabel setterPosLabel;
 	private JLabel menuLabel;
+	private JLabel statLabel;
 	
 	private JButton rotateButton;
 	private JButton saveButton;
@@ -83,6 +84,7 @@ public class MainView extends JFrame{
 		menuPanel.setBackground(Color.white);	
 		inputPanel.setBackground(Color.white);	
 		
+		statLabel = new JLabel();
 		
 		
 		//Menu Set up
