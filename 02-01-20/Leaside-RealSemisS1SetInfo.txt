@@ -1,0 +1,8 @@
+Set Name: Leaside-RealSemisS1
+Staring Line Up (1-6, lib): 4, 21, 1, 9, 15, 13, 11
+
+Subs (off, On): 
+4, 19
+9, 8
+8, 9
+19, 4

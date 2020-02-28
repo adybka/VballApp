@@ -1,0 +1,7 @@
+Set Name: DurhamAttack-SemisS3
+Staring Line Up (1-6, lib): 21, 18, 9, 15, 13, 4, 11
+
+Subs (off, On): 
+18, 1
+9, 19
+19, 9

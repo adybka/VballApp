@@ -1,0 +1,4 @@
+Set Name: PracT-G3S3
+Staring Line Up (1-6, lib): 21, 13, 4, 15, 1, 19, 11
+
+Subs (off, On): 

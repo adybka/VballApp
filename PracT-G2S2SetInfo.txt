@@ -1,0 +1,4 @@
+Set Name: PracT-G2S2
+Staring Line Up (1-6, lib): 15, 13, 8, 21, 1, 9, 11
+
+Subs (off, On): 

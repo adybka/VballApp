@@ -22,17 +22,19 @@ public class MainView extends JFrame{
 	private MenuHandler menuHandler;
 	
 	private JScrollPane historyPanel;
+	private JScrollPane hitStatsPane;
 	private JPanel menuPanel;
 	private JPanel inputPanel;
 	
 	public HistoryView history;
+	public HittingStatsView hitStats;
 	
 	private JLabel stepLabel;
 	private JLabel setterPosLabel;
 	private JLabel menuLabel;
 	
 	private JButton rotateButton;
-	private JButton saveButton;
+	private JButton StatOrTable;
 	private ArrayList<JButton> inputButtons;
 	private JButton  nextPosButton;
 	private JButton substitutionButton;
@@ -67,23 +69,24 @@ public class MainView extends JFrame{
 	private void setUpFrame() {
 		//Setup Panels
 		
-		historyPanel = new JScrollPane(history = new HistoryView(this.baseController));
+		historyPanel = new JScrollPane(history = new HistoryView());
+		
+		hitStatsPane=new JScrollPane(hitStats = baseController.repoController.hitView);
+		
 		menuPanel = new JPanel(new FlowLayout());
 		inputPanel = new JPanel(new FlowLayout());
 		
 		historyPanel.setPreferredSize(new Dimension(1360, 490));
+		hitStatsPane.setPreferredSize(new Dimension(1360, 490));
 		menuPanel.setPreferredSize(new Dimension(270, 490));
 		inputPanel.setPreferredSize(new Dimension(1000, 490));	
 		
 		historyPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		hitStatsPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		menuPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		inputPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		historyPanel.setBackground(Color.white);	
-		menuPanel.setBackground(Color.white);	
-		inputPanel.setBackground(Color.white);	
-		
-		
+		hitStatsPane.setVisible(false);
 		
 		//Menu Set up
 		menuLabel = new JLabel("MENU", SwingConstants.CENTER);
@@ -106,10 +109,10 @@ public class MainView extends JFrame{
 		substitutionButton.addActionListener(menuHandler);
 		menuPanel.add(substitutionButton);
 		
-		saveButton = new JButton("Save");
-		saveButton.setPreferredSize(new Dimension(200, 50));
-		saveButton.addActionListener(menuHandler);
-		menuPanel.add(saveButton);
+		StatOrTable = new JButton("StatOrTable");
+		StatOrTable.setPreferredSize(new Dimension(200, 50));
+		StatOrTable.addActionListener(menuHandler);
+		menuPanel.add(StatOrTable);
 		
 		fullSaveButton = new JButton("FULL SAVE");
 		fullSaveButton.setPreferredSize(new Dimension(200, 50));
@@ -134,6 +137,8 @@ public class MainView extends JFrame{
 		inputPanel.add(nextPosButton);
 			
 		this.add(historyPanel);
+		this.add(hitStatsPane);
+		
 		this.add(menuPanel);
 		this.add(inputPanel);
 		
@@ -378,8 +383,15 @@ public class MainView extends JFrame{
 			else if(e.getSource()==nextPosButton){
 				baseController.addPos();
 			}
-			else if(e.getSource()==saveButton) {
-				baseController.saveCurrentSet();
+			else if(e.getSource()==StatOrTable) {
+				if(historyPanel.isVisible()) {
+					historyPanel.setVisible(false);
+					hitStatsPane.setVisible(true);
+				}
+				else {
+					historyPanel.setVisible(true);
+					hitStatsPane.setVisible(false);
+				}
 			}
 			else if(e.getSource()==substitutionButton) {
 				baseController.startSub();

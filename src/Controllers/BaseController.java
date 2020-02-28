@@ -24,13 +24,15 @@ public class BaseController {
 	private Set currSet;
 	private CsvSaver csvSaver;
 	private Stack<Integer> undoStack;
-	
+	public RepoController repoController;
+		
 	public BaseController() {
 		step = 1;
 		csvSaver = new CsvSaver();
 		undoStack = new Stack<Integer>();
-		/*currSet = new Set("TEST");
-		/*for TESTING
+		repoController = new RepoController();
+		currSet = new Set("TEST");
+		//for TESTING
 		currLineUp = new ArrayList<Integer>();
 		currLineUp.add(4);
 		currLineUp.add(16);
@@ -51,7 +53,7 @@ public class BaseController {
 		
 		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
 		currSetterPos=currSet.getLineUp().getSetterStartingPosition();
-		*/
+		//*/
 		
 		go();
 	}
@@ -176,12 +178,16 @@ public class BaseController {
 	
 	public void addPos() {
 		undoStack.clear();
+		if(currPos.getAttacker()!=-1) {
+			repoController.addHit(currPos.getAttacker(), currPos.getAttackResult());
+		}
 		currSet.addPossession(currPos);
 		mView.history.model.insertRow(0, currPos.getAllThings().toArray());
 		currPos = new Possession(currSetterPos);
 		step=1;
 		mView.nextStep(step);
 	}
+	
 	
 	public void addLineUp(ArrayList<Integer> list, int setterPos, String setName) {
 		currSet = new Set(setName);
@@ -247,8 +253,8 @@ public class BaseController {
 	
 
 	private void go() {
-		//this.mView = new MainView(this, this.currSet.name);
-		this.sView = new SetLineUpView(this);
+		this.mView = new MainView(this, this.currSet.name);
+		//this.sView = new SetLineUpView(this);
 		//this.subView = new SubView(this);
 	}
 	

@@ -8,21 +8,22 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+
 import Controllers.BaseController;
 
-public class HistoryView extends JTable {
+public class HittingStatsView extends JTable {
 
-	private static final String[] columns = { "SetterPosition", "ReceiveType", "BlockingNum", "ReceivingPlayer", "PassQuality", "Attacker", "AttackResult", "killType", "KillX", "KillY", "killTeam", "hitFix", "BlockResult", "BlockingPlayer", "BlockingAssist" };
+	private static final String[] columns = { "Player#", "Hits", "Kills", "Conts", "Error", "Blocks", "+/-" };
 	public DefaultTableModel model;
 	
-	public HistoryView() {
-		super(new DefaultTableModel(columns, 0));
+	public HittingStatsView(Integer[][] data) {
+		super(new DefaultTableModel(data, columns));
 		DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
 		centerRender.setHorizontalAlignment(JLabel.CENTER);
-		for(int i=0; i<15; i++) {
+		for(int i=0; i<7; i++) {
 			this.getColumnModel().getColumn(i).setCellRenderer( centerRender );
 		}
-		this.setRowHeight(70);
+		this.setRowHeight(40);
 		model = (DefaultTableModel) this.getModel();
 	}
 	
