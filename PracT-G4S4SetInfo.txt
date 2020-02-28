@@ -1,0 +1,4 @@
+Set Name: PracT-G4S4
+Staring Line Up (1-6, lib): 19, 13, 8, 15, 1, 9, 11
+
+Subs (off, On): 

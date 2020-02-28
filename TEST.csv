@@ -1,0 +1,4 @@
+SetterPosition,ReceiveType,BlockingNum,ReceivingPlayer,PassQuality,Attacker,AttackResult,killType,KillX,KillY,killTeam,hitFix,BlockResult,BlockingPlayer,BlockingAssist
+1,F,0.0,21,3,21,K,S,1,2,1,,,,
+1,F,0.0,16,3,21,D,,,,,,,,
+1,R,2.0,21,3,21,E,,,,,,,,
