@@ -1,0 +1,4 @@
+Set Name: Venom-G1S2
+Staring Line Up (1-6, lib): 15, 18, 8, 21, 1, 9, 11
+
+Subs (off, On): 

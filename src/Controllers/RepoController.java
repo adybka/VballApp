@@ -26,11 +26,10 @@ public class RepoController {
 		else 
 			iresult=5;
 		int iplayer = indexOfPlayer(player);
-		hitRepo.updateStat(iplayer, iresult);
-		hitView.setValueAt(hitRepo.hittingStats[iplayer][1], iplayer, iresult);
-		hitView.setValueAt(hitRepo.hittingStats[iplayer][iresult], iplayer, iresult);
-		hitView.setValueAt(hitRepo.hittingStats[iplayer][6], iplayer, iresult);
-
+		//hitRepo.updateStat(iplayer, iresult);
+		//hitView.setValueAt(hitRepo.hittingStats[iplayer][1], iplayer, iresult);
+		//hitView.setValueAt(hitRepo.hittingStats[iplayer][iresult], iplayer, iresult);
+		//hitView.setValueAt(hitRepo.hittingStats[iplayer][6], iplayer, iresult);
 	}
 	
 	private int indexOfPlayer(int player){

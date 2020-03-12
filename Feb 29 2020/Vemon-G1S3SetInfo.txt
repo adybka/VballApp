@@ -1,0 +1,5 @@
+Set Name: Vemon-G1S3
+Staring Line Up (1-6, lib): 21, 1, 9, 15, 18, 8, 11
+
+Subs (off, On): 
+15, 19

@@ -137,7 +137,7 @@ public class MainView extends JFrame{
 		inputPanel.add(nextPosButton);
 			
 		this.add(historyPanel);
-		this.add(hitStatsPane);
+		//this.add(hitStatsPane);
 		
 		this.add(menuPanel);
 		this.add(inputPanel);

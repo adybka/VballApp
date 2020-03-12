@@ -1,0 +1,6 @@
+Set Name: Venon-G1S1
+Staring Line Up (1-6, lib): 19, 13, 4, 21, 1, 9, 11
+
+Subs (off, On): 
+21, 15
+13, 18
