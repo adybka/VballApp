@@ -1,0 +1,6 @@
+Set Name: Venom-ConsS1
+Staring Line Up (1-6, lib): 4, 21, 1, 9, 19, 13, 11
+
+Subs (off, On): 
+9, 8
+4, 15

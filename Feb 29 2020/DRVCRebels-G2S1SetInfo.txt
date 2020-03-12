@@ -1,0 +1,5 @@
+Set Name: DRVCRebels-G2S1
+Staring Line Up (1-6, lib): 15, 13, 8, 21, 18, 9, 11
+
+Subs (off, On): 
+8, 4

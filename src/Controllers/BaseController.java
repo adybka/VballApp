@@ -32,6 +32,7 @@ public class BaseController {
 		undoStack = new Stack<Integer>();
 		repoController = new RepoController();
 		currSet = new Set("TEST");
+		/*
 		//for TESTING
 		currLineUp = new ArrayList<Integer>();
 		currLineUp.add(4);
@@ -53,7 +54,7 @@ public class BaseController {
 		
 		currPos = new Possession(currSet.getLineUp().getSetterStartingPosition());
 		currSetterPos=currSet.getLineUp().getSetterStartingPosition();
-		//*/
+		 */
 		
 		go();
 	}
@@ -178,9 +179,9 @@ public class BaseController {
 	
 	public void addPos() {
 		undoStack.clear();
-		if(currPos.getAttacker()!=-1) {
-			repoController.addHit(currPos.getAttacker(), currPos.getAttackResult());
-		}
+		//if(currPos.getAttacker()!=-1) {
+		//	repoController.addHit(currPos.getAttacker(), currPos.getAttackResult());
+		//}
 		currSet.addPossession(currPos);
 		mView.history.model.insertRow(0, currPos.getAllThings().toArray());
 		currPos = new Possession(currSetterPos);
@@ -253,8 +254,8 @@ public class BaseController {
 	
 
 	private void go() {
-		this.mView = new MainView(this, this.currSet.name);
-		//this.sView = new SetLineUpView(this);
+		//this.mView = new MainView(this, this.currSet.name);
+		this.sView = new SetLineUpView(this);
 		//this.subView = new SubView(this);
 	}
 	
