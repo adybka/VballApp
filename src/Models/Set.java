@@ -43,7 +43,7 @@ public class Set {
 	
 	public void addPossession(Possession p) {
 		possessions.add(p);
-		printPossessions();
+		//printPossessions();
 	}
 	
 	

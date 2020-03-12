@@ -368,6 +368,7 @@ public class MainView extends JFrame{
 				baseController.addToPossessionInt(Integer.parseInt(((AbstractButton) e.getSource()).getText()));
 				nextStep(baseController.getStep());
 			}
+			
 		}
 		
 	}

@@ -17,12 +17,12 @@ public class HittingRepo {
 	}
 	
 	public void updateStat(int playerIndex, int result) {
-		hittingStats[playerIndex][result]++;
-		hittingStats[playerIndex][1]++;
+		hittingStats[playerIndex][result]+=1;
+		hittingStats[playerIndex][1]+=1;
 		if(result==2)
-			hittingStats[playerIndex][6]++;
+			hittingStats[playerIndex][6]+=1;
 		else if(result==4||result==5)
-			hittingStats[playerIndex][6]--;
+			hittingStats[playerIndex][6]-=1;
 	}
 	
 	

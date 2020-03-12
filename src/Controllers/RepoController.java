@@ -30,6 +30,7 @@ public class RepoController {
 		hitView.setValueAt(hitRepo.hittingStats[iplayer][1], iplayer, iresult);
 		hitView.setValueAt(hitRepo.hittingStats[iplayer][iresult], iplayer, iresult);
 		hitView.setValueAt(hitRepo.hittingStats[iplayer][6], iplayer, iresult);
+
 	}
 	
 	private int indexOfPlayer(int player){
